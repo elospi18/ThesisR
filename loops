@@ -1,0 +1,18 @@
+#creates all the subdata frames one for each experiment
+#paneldata is a data frame
+#paneldata$experiment is a vector that contains factors with range 1:8 = eight experiments
+#subdataframes will have the name xi
+for(i in 1:length(x)){
+  assign(paste0("x", i), as.data.frame(print(paneldata[paneldata$experiment==i,])))
+  
+}
+
+#Creates multiple regressions for different dataframes
+#where df is a list with the dataframes you want to regress
+#Here we use a logit model to regress some variables
+#The output of this loop are reg.i for each i in 1:8
+df<-list(x1,x2,x3,x4,x5,x6,x7,x8)
+  for(i in 1:length(df)){
+    regressv<-c(1:i)
+    assign(paste0("reg",i),reg1<-glm(stealdum~alpha+multa+Treatment,family = binomial,data = df[[i]]))
+}
