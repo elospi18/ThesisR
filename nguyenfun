@@ -1,0 +1,24 @@
+#Function to change the upper 95% and the lower 5% values to mean+ sd and to mean-se respectively
+
+#x is a data frame while Y is a character indicating the column name yo want to eliminate the outliers
+
+nguyenfunc<-function(x,y){
+  df<-x
+  z<-df$y
+  a<-quantile(z,0.05)
+  b<-quantile(z,0.95)
+  u<-mean(z)
+  se<-sd(z)
+  for(i in 1:length(df$y)){
+    if(df[i,y]<a){
+      df[i,y]<-u-se
+    } else{}
+    if(df[i,y]>b){
+      df[i,y]<-u+se
+    }
+  }
+ output<<-as.data.frame(df)
+}
+
+nguyenfunc(fukushima,"deathrate")
+
