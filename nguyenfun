@@ -4,10 +4,10 @@
 
 nguyenfunc<-function(x,y){
   df<-x
-  z<-df$y
+  z<-df[,y]
   a<-quantile(z,0.05)
   b<-quantile(z,0.95)
-  u<-mean(z)
+  u<<-mean(z)
   se<-sd(z)
   for(i in 1:length(df$y)){
     if(df[i,y]<a){
@@ -19,6 +19,3 @@ nguyenfunc<-function(x,y){
   }
  output<<-as.data.frame(df)
 }
-
-nguyenfunc(fukushima,"deathrate")
-
