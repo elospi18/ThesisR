@@ -5,8 +5,8 @@
 nguyenfunc<-function(x,y){
   df<-x
   z<-df[,y]
-  a<-quantile(z,0.05)
-  b<-quantile(z,0.95)
+  a<-quantile(z,0.05,na.rm=TRUE)
+  b<-quantile(z,0.95,na.rm=TRUE)
   u<<-mean(z)
   se<-sd(z)
   for(i in 1:length(df$y)){
@@ -17,5 +17,6 @@ nguyenfunc<-function(x,y){
       df[i,y]<-u+se
     }
   }
- output<<-as.data.frame(df)
+ output<<-as.data.frame(df) #Output matrix, if you check the distribution of the new data
+                            #you will see the differences, there is no longer outliers
 }
